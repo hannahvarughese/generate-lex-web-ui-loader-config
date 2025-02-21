@@ -117,7 +117,7 @@ export const getConnectDetails = async() => {
   const apiGatewayClient = new APIGatewayClient({ region: process.env.AWS_REGION });
   try {
     const instanceResponse = await connectClient.send(new ListInstancesCommand({}));
-    connect.instanceId =  instanceResponse?.InstanceSummaryList?.[0]?.Id || null;
+    connect.instanceId =  instanceResponse?.InstanceSummaryList?.[0]?.Id || '';
     // const contactFlowResponse = await connectClient.send(new ListContactFlowsCommand({ InstanceId: instanceId }));
     // const contactFlowId = contactFlowResponse?.ContactFlowSummaryList?.[0]?.Id;
     // const apiListResponse = await apiGatewayClient.send(new GetRestApisCommand({}));
