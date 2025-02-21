@@ -14,20 +14,26 @@ This project is created to facilitate automatic creation of `lex-web-ui-loader-c
 6. Open Postman or any other API testing tool.
 7. Choose HTTP method to be POST and paste the URL http://localhost:3000/add-bot-config
 8. Add body with the following structure
-        ``` {
-                "botStack": "llmbot", // Name of the Qna Bot stack created on AWS
-                "customer": "trial-fe-qa-env", // Name of the customer to which config needs to be added
-                "platform": "ca", // Values can be ca for Agent AI , acad for Selfservice
-                "stage": "dev" // dev for updating to staging, prod for updating to prod
-            }```
-9. After running the API, you will get success response (status: 200)
-        ```{
-                message: "Config updated successfully to database"
-            }```
+   ```
+   {
+        "botStack": "llmbot", // Name of the Qna Bot stack created on AWS
+        "customer": "trial-fe-qa-env", // Name of the customer to which config needs to be added
+        "platform": "ca", // Values can be ca for Agent AI , acad for Selfservice
+        "stage": "dev" // dev for updating to staging, prod for updating to prod
+   }
+   ```
+10. After running the API, you will get success response (status: 200)
+    ```
+    {
+        message: "Config updated successfully to database"
+    }
+    ```
     or, if there is any error (status: 500)
-        ```{
-                 error: "Internal Server Error"
-            }```
+    ```
+    {
+        error: "Internal Server Error"
+    }
+    ```
 
 ## Note
 The generated config will have some static values along with dynamic values. The `ui`, `polly`, `recorder`, `iframe` will have static default values. The `instanceId` in `connect` will be dynamic and other values will be static. The `lex` and `cognito` section will have dynamic values except for `boolean` and `text` fields.
