@@ -8,6 +8,7 @@
   "author": "hannah",
   "license": "ISC",
   "description": "",
+  "type": "module",
   "dependencies": {
     "@aws-sdk/client-api-gateway": "^3.750.0",
     "@aws-sdk/client-cloudformation": "^3.750.0",

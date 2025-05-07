@@ -18,7 +18,8 @@ This project is created to facilitate automatic creation of `lex-web-ui-loader-c
                 "botStack": "llmbot", // Name of the Qna Bot stack created on AWS
                 "customer": "trial-fe-qa-env", // Name of the customer to which config needs to be added
                 "platform": "ca", // Values can be ca for Agent AI , acad for Selfservice
-                "stage": "dev" // dev for updating to staging, prod for updating to prod
+                "stage": "dev", // dev for updating to staging, prod for updating to prod
+                "title": "LLMBot" // title to be displayed in the chat window
             }```
 9. After running the API, you will get success response (status: 200)
         ```{
@@ -30,4 +31,8 @@ This project is created to facilitate automatic creation of `lex-web-ui-loader-c
             }```
 
 ## Note
+
+If you want to just generate the configuration and **not insert  to database** comment out lines from 42 - 54, and uncomment line no 55. Then rerun the application
+using `node server.js` and call the API as described in **Steps to run** (7, 8). It will return the configuration in the response.
+
 The generated config will have some static values along with dynamic values. The `ui`, `polly`, `recorder`, `iframe` will have static default values. The `instanceId` in `connect` will be dynamic and other values will be static. The `lex` and `cognito` section will have dynamic values except for `boolean` and `text` fields.

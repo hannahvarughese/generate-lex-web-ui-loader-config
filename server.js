@@ -14,17 +14,19 @@ app.use(express.json());
 app.post("/add-bot-config", async (req, res) => {
   try {    
     const region = process.env.AWS_REGION;
-    const {botStack, customer, platform,  stage } = req.body;
+    const {botStack, customer, platform,  stage, title } = req.body;
     const stackOutputs = await getStackOutput(botStack);
     console.log("stackOutputs =>", stackOutputs);
     // Fetch values from CloudFormation Outputs
     const userPoolUrl = findConfigValue(stackOutputs, "UserPoolURL");
     console.log("userPoolUrl =>", userPoolUrl);
+    const lex = getLexDetails(stackOutputs, region);
+    console.log("lexInfo =>", lex);
     const cognitoInfo = await getCognitoDetails(userPoolUrl, botStack);
     console.log("cognitoInfo =>", cognitoInfo);
-    const lex = getLexDetails(stackOutputs, region);
     const connect = await getConnectDetails();
-
+    ui.pageTitle = botStack;
+    ui.toolbarTitle = title ? title : ui.toolbarTitle;
     console.log("connect =>", JSON.stringify(connect));
     const config = {
       region,
@@ -50,6 +52,7 @@ app.post("/add-bot-config", async (req, res) => {
       throw new Error('Error occurred during updation')
     }
     res.json({message: "Config updated successfully to database"});
+    // res.json(config)
   } catch (error) {
     console.error("Error generating configuration:", error);
     res.status(500).json({ error: "Internal Server Error" });
