@@ -14,7 +14,7 @@ This project is created to facilitate automatic creation of `lex-web-ui-loader-c
 6. Open Postman or any other API testing tool.
 7. Choose HTTP method to be POST and paste the URL http://localhost:3000/add-bot-config
 8. Add body with the following structure
-   ```jsonc
+   ```
    {
         botStack: "llmbot", // Name of the Qna Bot stack created on AWS
         customer: "trial-fe-qa-env", // Name of the customer to which config needs to be added
@@ -24,13 +24,13 @@ This project is created to facilitate automatic creation of `lex-web-ui-loader-c
    }
    ```
 10. After running the API, you will get success response (status: 200)
-    ```jsonc
+    ```
     {
         message: "Config updated successfully to database"
     }
     ```
     or, if there is any error (status: 500)
-    ```jsonc
+    ```
     {
         error: "Internal Server Error"
     }
